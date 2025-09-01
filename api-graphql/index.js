@@ -40,7 +40,7 @@ const schema = buildSchema(`
   }
 
   type Mutation {
-    addFilm(title: String!, description: String!, url: String!, rating: Int!): Film
+    addFilm(title: String!, description: String!, url: String!): Film
     rateFilm(id: ID!, rating: Int!): Film
   }
 `);
@@ -80,12 +80,12 @@ const root = {
     };
   },
 
-  addFilm: async ({ title, description, url, rating }) => {
+  addFilm: async ({ title, description, url }) => {
     const newFilm = new Film({
       title,
       description,
       url,
-      ratings: [rating],
+      ratings: [0], // Note initiale de 0
     });
     await newFilm.save();
     return {

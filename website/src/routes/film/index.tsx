@@ -13,11 +13,10 @@ function FilmsList() {
   console.log("films", films);
   return (
     <div>
-      <h1>🎬 Liste des Films</h1>
       <ul className="film-list">
         {films &&
           films.map((film: Film) => (
-            <li key={film.id} style={{ listStyle: "none"}}>
+            <li key={film.id} style={{ listStyle: "none" }}>
               <Link
                 to={"/film/$id"}
                 params={{

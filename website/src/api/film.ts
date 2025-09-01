@@ -62,8 +62,8 @@ export async function addFilm(film: Film): Promise<Film> {
     },
     body: JSON.stringify({
       query: `
-        mutation addFilm($title: String!, $description: String!, $url: String!, $rating: Int!) {
-          addFilm(title: $title, description: $description, url: $url, rating: $rating) {
+        mutation addFilm($title: String!, $description: String!, $url: String!) {
+          addFilm(title: $title, description: $description, url: $url) {
             id
             description
             title

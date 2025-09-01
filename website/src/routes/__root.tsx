@@ -1,8 +1,12 @@
 import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
+import "../App.css";
+
 const activeProps = {
-  style: {
-    fontWeight: "bold",
-  },
+  className: "navbar-link-active",
+};
+
+const linkProps = {
+  className: "navbar-link",
 };
 
 export const Route = createRootRoute({
@@ -14,17 +18,17 @@ export const Route = createRootRoute({
           <nav className="navbar">
             <ul className="navbar-list">
               <li>
-                <Link to="/" activeProps={activeProps}>
+                <Link to="/" {...linkProps} activeProps={activeProps}>
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/film" activeProps={activeProps}>
+                <Link to="/film" {...linkProps} activeProps={activeProps}>
                   Films
                 </Link>
               </li>
               <li>
-                <Link to="/ajoutFilm" activeProps={activeProps}>
+                <Link to="/ajoutFilm" {...linkProps} activeProps={activeProps}>
                   Ajouter un film
                 </Link>
               </li>

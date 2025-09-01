@@ -64,8 +64,15 @@
   font-weight: bold;
 }
 
+.navbar-link-active {  
+  color: #222 !important;
+  background: #ece77e;
+  font-weight: bold;
+}
+
 .navbar a:hover {
-  color: #ffd700;
+  color: #222;
+  background-color: #ece77e;
 }
 .navbar-list {
   justify-content: center;
@@ -78,4 +85,12 @@
 
 .navbar-list li {
   margin: 0;
+}
+
+.navbar-link {
+  color: #222;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background 0.2s;
 }

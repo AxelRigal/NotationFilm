@@ -23,14 +23,26 @@ function AjoutFilm() {
   } = useForm<Inputs>();
 
   const onSubmitHandler: SubmitHandler<Inputs> = async (data) => {
-    console.log("Formulaire", data);
     const response = await addFilm(data as any);
-    console.log("Film added:", response);
+
     navigate({ to: `/film/${response.id}` });
   };
+
+  console.log("Errors", errors);
   return (
     <form className="ajout-film-form" onSubmit={handleSubmit(onSubmitHandler)}>
       <h1>Ajout de film</h1>
+      <img
+        src="https://pretatourner.com/upload/default/636519b12ffe0180451063.webp"
+        alt="image de création de film"
+        style={{
+          borderRadius: "1rem",
+          boxShadow: "0 4px 16px rgba(0,0,0,0.15)",
+          maxWidth: "90vw",
+          width: "400px",
+          marginBottom: "2rem",
+        }}
+      />
       <div>
         <p>Nom du film</p>
         <input
@@ -39,7 +51,11 @@ function AjoutFilm() {
           {...register("title", { required: true, minLength: 2 })}
         />
         {errors.title && (
-          <div className="text-red-500">{errors.title.message}</div>
+          <div className="text-red-500">
+            {errors.title.type === "required"
+              ? "Le titre est obligatoire"
+              : "Le titre doit avoir au moins 2 caractères"}
+          </div>
         )}
       </div>
       <div>
@@ -51,34 +67,23 @@ function AjoutFilm() {
           {...register("description", { required: true, minLength: 10 })}
         />
         {errors.description && (
-          <div className="text-red-500">{errors.description.message}</div>
+          <div className="text-red-500">
+            {errors.description.type === "required"
+              ? "La description est obligatoire"
+              : "La description doit avoir au moins 10 caractères"}
+          </div>
         )}
       </div>
       <div>
-        <p>URL de l'image</p>
+        <p>URL</p>
         <input
           className="border"
           type="text"
           id="url"
-          {...register("url", { required: true, minLength: 10 })}
+          {...register("url", { required: true })}
         />
-        {errors.url && <div className="text-red-500">{errors.url.message}</div>}
-      </div>
-      <div>
-        <p>Note (entre 1 et 5)</p>
-        <input
-          className="border"
-          type="text"
-          id="averageRating"
-          {...register("averageRating", {
-            required: true,
-            min: 0,
-            max: 5,
-            valueAsNumber: true,
-          })}
-        />
-        {errors.averageRating && (
-          <div className="text-red-500">{errors.averageRating.message}</div>
+        {errors.url && (
+          <div className="text-red-500">L'URL est obligatoire</div>
         )}
       </div>
       <button>Ajouter le film</button>
