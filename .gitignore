@@ -3,3 +3,5 @@ api-graphql/node_modules/
 website/node_modules/
 
 website/.tanstack/
+
+testing
