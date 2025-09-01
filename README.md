@@ -1,5 +1,9 @@
 # NotationFilm
 
+
+<img width="1218" height="956" alt="image" src="https://github.com/user-attachments/assets/bb54158c-ee7f-4d30-939d-98628cb8ccae" />
+
+
 Site de notation de films
 
 Prérequis : avoir une base de données mongodb : 
