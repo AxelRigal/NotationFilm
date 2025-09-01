@@ -1,0 +1,81 @@
+#root {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+.header-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #222;
+  z-index: 1000;
+  padding-bottom: 0.5rem;
+}
+
+.header-fixed h1 {
+  color: #fff;
+  margin: 0;
+  padding: 1rem 0 0.5rem 0;
+  font-size: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.main-content {
+  padding-top: 100px;
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.navbar {
+  background: #222;
+  padding: 1rem 2rem;
+  margin-bottom: 2rem;
+} 
+
+.navbar ul {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  margin: 0;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+}
+
+.navbar a[style] {
+  color: #ffd700;
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  color: #ffd700;
+}
+.navbar-list {
+  justify-content: center;
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-list li {
+  margin: 0;
+}

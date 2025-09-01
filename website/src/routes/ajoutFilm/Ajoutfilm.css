@@ -1,0 +1,62 @@
+.ajout-film-form {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.ajout-film-form h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+.ajout-film-form p {
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  color: #444;
+}
+
+.ajout-film-form input {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  margin-top: 0.2rem;
+  background: #f9f9f9;
+  transition: border 0.2s;
+}
+
+.ajout-film-form input:focus {
+  border-color: #ffd700;
+  outline: none;
+}
+
+.ajout-film-form button {
+  background: #ffd700;
+  color: #222;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.8rem 1.2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.2s;
+}
+
+.ajout-film-form button:hover {
+  background: #e6c200;
+}
+
+.text-red-500 {
+  color: #d32f2f;
+  font-size: 0.95rem;
+  margin-top: 0.2rem;
+}
