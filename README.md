@@ -1,7 +1,7 @@
 # NotationFilm
 
+<img width="1411" height="782" alt="image" src="https://github.com/user-attachments/assets/7a40d2d5-0e20-46d0-ae86-5555484f85d7" />
 
-<img width="1218" height="956" alt="image" src="https://github.com/user-attachments/assets/bb54158c-ee7f-4d30-939d-98628cb8ccae" />
 
 
 Site de notation de films
