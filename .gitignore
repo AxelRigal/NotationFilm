@@ -5,3 +5,6 @@ website/node_modules/
 website/.tanstack/
 
 testing
+
+.env
+.env*

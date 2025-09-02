@@ -18,7 +18,15 @@ const filmSchema = new mongoose.Schema({
   title: String,
   description: String,
   url: String,
-  ratings: [Number],
+  ratings: [
+    (RatingSchema = new mongoose.Schema(
+      {
+        rating: Number,
+        userId: String,
+      },
+      { _id: false }
+    )),
+  ],
 });
 
 const Film = mongoose.model("Film", filmSchema);
@@ -30,8 +38,14 @@ const schema = buildSchema(`
     title: String!
     description: String
     averageRating: Float
-    ratings: [Int]
+    ratings: [Rating]
     url: String
+  }
+
+  type Rating {
+    id: ID!
+    rating: Int!
+    userId: ID!
   }
 
   type Query {
@@ -41,7 +55,7 @@ const schema = buildSchema(`
 
   type Mutation {
     addFilm(title: String!, description: String!, url: String!): Film
-    rateFilm(id: ID!, rating: Int!): Film
+    rateFilm(id: ID!, rating: Int!, userId: ID!): Film
   }
 `);
 
@@ -49,7 +63,9 @@ const schema = buildSchema(`
 function calculateAverage(ratings) {
   if (!ratings.length) return 0;
   return parseFloat(
-    (ratings.reduce((a, b) => a + b, 0) / ratings.length).toFixed(2)
+    (
+      ratings.map((r) => r.rating).reduce((a, b) => a + b, 0) / ratings.length
+    ).toFixed(2)
   );
 }
 
@@ -85,7 +101,7 @@ const root = {
       title,
       description,
       url,
-      ratings: [0], // Note initiale de 0
+      ratings: [], 
     });
     await newFilm.save();
     return {
@@ -93,18 +109,22 @@ const root = {
       title: newFilm.title,
       description: newFilm.description,
       ratings: newFilm.ratings,
-      averageRating: calculateAverage(newFilm.ratings),
       url: newFilm.url,
     };
   },
 
-  rateFilm: async ({ id, rating }) => {
+  rateFilm: async ({ id, rating, userId }) => {
     if (rating < 1 || rating > 5)
       throw new Error("La note doit être entre 1 et 5");
+    if (!userId) throw new Error("User ID is required");
     const film = await Film.findById(id);
     if (!film) throw new Error("Film introuvable");
-
-    film.ratings.push(rating);
+    const existing = film.ratings.find((r) => r.userId === userId);
+    if (existing) {
+      existing.rating = rating;
+    } else {
+      film.ratings.push({ userId, rating });
+    }
     await film.save();
 
     return {
