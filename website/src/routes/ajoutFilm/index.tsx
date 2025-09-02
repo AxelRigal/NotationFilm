@@ -28,7 +28,6 @@ function AjoutFilm() {
     navigate({ to: `/film/${response.id}` });
   };
 
-  console.log("Errors", errors);
   return (
     <form className="ajout-film-form" onSubmit={handleSubmit(onSubmitHandler)}>
       <h1>Ajout de film</h1>

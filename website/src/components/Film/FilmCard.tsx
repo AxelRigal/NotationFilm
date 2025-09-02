@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { Film } from "../../types/film";
 import { rateFilm } from "../../api/film";
 import { StarRating } from "../utils/StarRating";
+import useAuth from "../../hook/useAuth";
 
 type Props = {
   film: Film;
@@ -9,6 +10,7 @@ type Props = {
 };
 
 export default function FilmCard({ film, onSpecificPage }: Props) {
+  const { user } = useAuth();
   const [rating, setRating] = useState<number>(0);
   const [message, setMessage] = useState<string | null>(null);
   const [averageRating, setAverageRating] = useState<number | undefined>(
@@ -16,10 +18,16 @@ export default function FilmCard({ film, onSpecificPage }: Props) {
   );
   const [hovered, setHovered] = useState(false);
 
+  // console.log("User in FilmCard:", user);
+
   const handleRate = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const updatedFilm = await rateFilm(film.id, rating);
+      if (!user) {
+        setMessage("Veuillez vous connecter pour noter.");
+        return;
+      }
+      const updatedFilm = await rateFilm(film.id, rating, user.uid);
       setAverageRating(updatedFilm.averageRating);
       setMessage("Merci pour votre note !");
     } catch (err) {

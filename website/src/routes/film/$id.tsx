@@ -10,6 +10,5 @@ export const Route = createFileRoute("/film/$id")({
 
 function Film() {
   const film = Route.useLoaderData();
-  console.log(film);
   return <FilmCard film={film} onSpecificPage={true} />;
 }

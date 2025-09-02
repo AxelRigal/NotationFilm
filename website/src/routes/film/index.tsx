@@ -10,7 +10,6 @@ export const Route = createFileRoute("/film/")({
 
 function FilmsList() {
   const films = Route.useLoaderData();
-  console.log("films", films);
   return (
     <div>
       <ul className="film-list">

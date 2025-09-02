@@ -19,10 +19,7 @@ export async function getFilms(): Promise<Film[]> {
     }),
   })
     .then((res) => res.json())
-    .then((data) => {
-      console.log("data", data);
-      return data.data.films;
-    })
+    .then((data) => data.data.films)
     .catch(console.error);
 }
 
@@ -81,32 +78,26 @@ export async function addFilm(film: Film): Promise<Film> {
     }),
   })
     .then((res) => res.json())
-    .then((data) => {
-      console.log("data", data);
-      return data.data.addFilm;
-    })
+    .then((data) => data.data.addFilm)
     .catch(console.error);
 }
-export async function rateFilm(id: string, rating: number) {
+export async function rateFilm(id: string, rating: number, userId: string) {
   return await fetch("/graphql", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       query: `
-        mutation rateFilm($id: ID!, $rating: Int!) {
-          rateFilm(id: $id, rating: $rating) {
+        mutation rateFilm($id: ID!, $rating: Int!, $userId: ID!) {
+          rateFilm(id: $id, rating: $rating, userId: $userId) {
             id
             averageRating
           }
         }
       `,
-      variables: { id, rating },
+      variables: { id, rating, userId },
     }),
   })
     .then((res) => res.json())
-    .then((data) => {
-      console.log("data", data);
-      return data.data.rateFilm;
-    })
+    .then((data) => data.data.rateFilm)
     .catch(console.error);
 }

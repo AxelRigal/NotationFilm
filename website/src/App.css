@@ -14,12 +14,23 @@
   padding-bottom: 0.5rem;
 }
 
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
 .header-fixed h1 {
   color: #fff;
   margin: 0;
   padding: 1rem 0 0.5rem 0;
   font-size: 2rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.header-bar {
+  padding: 0 1rem;
 }
 
 .main-content {
@@ -35,6 +46,7 @@
 }
 
 .navbar {
+  
   background: #222;
   padding: 1rem 2rem;
   margin-bottom: 2rem;
@@ -93,4 +105,13 @@
   padding: 8px 16px;
   border-radius: 4px;
   transition: background 0.2s;
+}
+
+.login-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: absolute;
+  right: 1rem;
+  top: 0.75rem;
 }
