@@ -13,7 +13,7 @@ type Inputs = {
   url: string;
   averageRating: number;
 };
-git 
+
 function AjoutFilm() {
   const navigate = useNavigate();
   const {
