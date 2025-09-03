@@ -1,12 +1,17 @@
-const express = require("express");
-const { graphqlHTTP } = require("express-graphql");
-const { buildSchema } = require("graphql");
-const mongoose = require("mongoose");
-const cors = require("cors");
+import dotenv from "dotenv";
+import express from "express";
+import { graphqlHTTP } from "express-graphql";
+import { buildSchema } from "graphql";
+import mongoose from "mongoose";
+import cors from "cors";
+
+dotenv.config();
+// URL de connexion MongoDB
+const url = `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_HOST}:${process.env.MONGODB_PORT}/${process.env.MONGODB_DATABASE}`;
 
 // Connexion MongoDB
 mongoose
-  .connect("mongodb://localhost:27017/graphqlfilms", {
+  .connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -14,19 +19,18 @@ mongoose
   .catch((err) => console.error("❌ Erreur MongoDB:", err));
 
 // Modèle Mongoose
+const RatingSchema = new mongoose.Schema(
+  {
+    rating: Number,
+    userId: String,
+  },
+  { _id: false }
+);
 const filmSchema = new mongoose.Schema({
   title: String,
   description: String,
   url: String,
-  ratings: [
-    (RatingSchema = new mongoose.Schema(
-      {
-        rating: Number,
-        userId: String,
-      },
-      { _id: false }
-    )),
-  ],
+  ratings: [RatingSchema],
 });
 
 const Film = mongoose.model("Film", filmSchema);
@@ -101,7 +105,7 @@ const root = {
       title,
       description,
       url,
-      ratings: [], 
+      ratings: [],
     });
     await newFilm.save();
     return {
