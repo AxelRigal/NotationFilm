@@ -18,5 +18,6 @@ export default defineConfig({
         secure: false,
       },
     },
+    port: parseInt(process.env.VITE_PORT ?? '5173'),
   },
 });
