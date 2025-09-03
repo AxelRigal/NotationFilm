@@ -1,4 +1,4 @@
-import "./AjoutFilm.css";
+import "./Ajoutfilm.css";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { addFilm } from "../../api/film";
@@ -13,7 +13,7 @@ type Inputs = {
   url: string;
   averageRating: number;
 };
-
+git 
 function AjoutFilm() {
   const navigate = useNavigate();
   const {
